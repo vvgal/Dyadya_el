@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/nullstyle.css">
+
+    <link rel="stylesheet" href="css/style.min.css">
+    <title>Дядя ел</title>
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="header__content">
+                <a href="#" class="header__logo">
+                    <div class="header__img">
+                        <img src="img/logo_blue.jpg" alt="pic">
+                    </div>
+                    <h1 class="header__title">Дядя ел!</h1>
+                </a>
+                <ul class="header__links">
+                    <li><a class="header__link" href="https://vk.com/dyadyael52"><img src="icons/vk.svg" alt="pic"></a></li>
+                    <li><a class="header__link" href="https://t.me/DyaDyaEl52"><img src="icons/telegram.svg" alt="pic"></a></li>
+                </ul>
+                <div class="header__contacts">
+                    <a href="tel:+78000501515" class="header__phone">8 800 050-15-15</a>
+                    <div class="header__email">dyadya_el@mail.ru</div>
+                </div>
+                <div class="header__shopping">
+                    <div class="header__qty">0</div>
+                    <div class="header__cart">&#128722</div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section class="promo">
+        <div class="container">
+            <div class="promo__content">
+                <div class="promo__img promo__img_shawarma"></div>
+                <div class="promo__description">
+                    Весь наш продукт, который мы создаем для Вас, готовится только из качественных и абсолютно свежих ингредиентов!
+                </div>
+                <div class="promo__img promo__img_burger"></div>
+            </div>
+        </div>
+    </section>
+
+    <section class="catalog">
+        <div class="container">
+            <div class="catalog__content">
+                <div class="catalog__header">
+                    <ul class="catalog__menu">
+                        <li class="catalog__menu-item catalog__menu-item_active">Бургеры</li>
+                        <li class="catalog__menu-item">Шаурма</li>
+                        <li class="catalog__menu-item">Шашлык</li>
+                        <li class="catalog__menu-item">Напитки</li>
+                        <li class="catalog__menu-item">Соусы</li>
+                    </ul>
+                </div>
+                <div class="catalog__body">
+                    <div id="burgers" class="catalog__items catalog__items_active">
+                        <div class="catalog__item">
+                            <div class="catalog__img"></div>
+                            <div id='0001' class="catalog__name">Бургер</div>
+                            <div class="catalog__info">
+                                <div class="catalog__weight">300 г.</div>
+                                <div class="catalog__price"><span>350</span> руб.</div>
+                            </div>
+                            <div class="catalog__more">Подробнее</div>
+                            <button class="catalog__button catalog__button_active">Добавить в корзину</button>
+                            <div class="catalog__setting">
+                                <div class="catalog__minus">-</div>
+                                <div class="catalog__qty">0</div>
+                                <div class="catalog__plus">+</div>
+                            </div>
+                            <div class="catalog__description">
+                                <div class="catalog__composition">
+                                    Состав: булочка, котлета из мраморной говядины, лист салата, помидоры, соленые огурцы, сыр, соус.
+                                </div>
+                                <div class="catalog__back">
+                                    Назад
+                                </div>
+                            </div>
+                        </div>
+                        <div class="catalog__item">
+                            <div class="catalog__img"></div>
+                            <div id='0002' class="catalog__name">Другой бургер</div>
+                            <div class="catalog__info">
+                                <div class="catalog__weight">300 г.</div>
+                                <div class="catalog__price"><span>350</span> руб.</div>
+                            </div>
+                            <div class="catalog__more">Подробнее</div>
+                            <button class="catalog__button catalog__button_active">Добавить в корзину</button>
+                            <div class="catalog__setting">
+                                <div class="catalog__minus">-</div>
+                                <div class="catalog__qty">0</div>
+                                <div class="catalog__plus">+</div>
+                            </div>
+                            <div class="catalog__description">
+                                <div class="catalog__composition">
+                                    Состав: булочка, котлета из мраморной говядины, лист салата, помидоры, соленые огурцы, сыр, соус.
+                                </div>
+                                <div class="catalog__back">
+                                    Назад
+                                </div>
+                            </div>
+                        </div>
+                        
+                    </div>
+                    <div id="shawarmas" class="catalog__items">
+                        
+                    </div>
+                    <div id="shashlik" class="catalog__items">
+                        
+                    </div>
+                    <div id="drinks" class="catalog__items">
+                        
+                    </div>
+                    <div id="sauces" class="catalog__items">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="map">
+        <div class="container">
+            <div class="map__content">
+                <iframe src="https://yandex.ru/map-widget/v1/?um=constructor%3A0ac90e968863679385285032a6f27901225d0c861b2473474b1e3894c316310b&amp;source=constructor" width="100%" height="400" frameborder="0"></iframe>
+            </div>
+        </div>
+    </section>
+
+    <section class="footer">
+        Hello world
+    </section>
+
+    <div class="shopping-cart">
+        <div class="container">
+            <div class="shopping-cart__content">
+                <table class="shopping-cart__table">
+                    <tr><th>№</th><th>Наименование</th><th>Цена</th><th>Количество</th><th>Стоимость</th></tr>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/jquery-3.6.2.min.js"></script>
+    <script src="js/script.js"></script>
+</body>
+</html>
