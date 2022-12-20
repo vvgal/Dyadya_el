@@ -1,5 +1,15 @@
 $(document).ready(function(){
 
+    // Mobile menu
+    $('.header__burger').on('click', function() {
+        $(this).toggleClass('header__burger_active');
+        $('.mobile-menu').toggleClass('mobile-menu_active');
+    });
+    $('.mobile-menu>*:not(.mobile-menu__contacts, .mobile-menu__address)').on('click', function() {
+        $('.header__burger').toggleClass('header__burger_active');
+        $('.mobile-menu').toggleClass('mobile-menu_active');
+    });
+
     // Show more information
     function toggleSlide(item) {
         $(item).each(function(i) {
