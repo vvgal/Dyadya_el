@@ -44,9 +44,13 @@ $(document).ready(function(){
     $('.header__shopping').on('click', function() {
         $('.shopping-cart').toggleClass('shopping-cart_active');
     });
+    $('.shopping-cart__exit').on('click', function() {
+        $('.shopping-cart').toggleClass('shopping-cart_active');
+    });
     // Add/remove to cart
     let global_qty = 0,
-        order = 0;
+        order = 0,
+        total = 0;
     $('.catalog__button').on('click', function() {
         let qty = 0,
             position = $(this).closest('.catalog__item').find('.catalog__name').html(),
@@ -57,9 +61,11 @@ $(document).ready(function(){
         .find('.catalog__qty').html(qty += 1);
         global_qty += 1;
         order += 1;
+        total += Number(price)
         $('.header__qty').html(global_qty);
 
-        $('.shopping-cart__table').append($('<tr class="'+id+'"><td class="order">'+String(order)+'</td><td class="name">'+position+'</td><td class="price">'+price+' руб.</td><td class="qty">'+qty+'</td><td class="subtotal">'+(price * qty)+' руб.</td></tr>'))
+        $('.shopping-cart__table').append($('<tr class="'+id+'"><td class="order">'+String(order)+'</td><td class="name">'+position+'</td><td class="price">'+price+' руб.</td><td class="qty">'+qty+'</td><td class="subtotal">'+(price * qty)+' руб.</td></tr>'));
+        $('.shopping-cart__total>span').html(total);
     });
 
     // Minus
@@ -77,6 +83,9 @@ $(document).ready(function(){
         } else {
             $(this).closest('.catalog__setting').find('.catalog__qty').html(qty -= 1)
         }
+
+        total -= Number(price);
+        $('.shopping-cart__total>span').html(total);
     
         $('.shopping-cart__table').find('.'+id).find('.qty').html(qty);
         $('.shopping-cart__table').find('.'+id).find('.subtotal').html((qty*price)+' руб.');
@@ -92,8 +101,52 @@ $(document).ready(function(){
         $('.header__qty').html(global_qty);
 
         let id = $(this).closest('.catalog__item').find('.catalog__name').attr('id');
+
+        total += Number(price);
+        $('.shopping-cart__total>span').html(total);
     
         $('.shopping-cart__table').find('.'+id).find('.qty').html(qty);
         $('.shopping-cart__table').find('.'+id).find('.subtotal').html((qty*price)+' руб.');
     });
+
+    // Form
+    $('input[name="delivery"]').on('click', function() {
+        if ($('input[id="delivery"]').is(':checked')) {
+            $('.shopping-cart__address').addClass('shopping-cart__address_active');
+            $('input[name="address"]').prop('required', true);
+        } else {
+            $('.shopping-cart__address').removeClass('shopping-cart__address_active');
+            $('#address-error').remove();
+            $('input[name="address"]').prop('required', false);
+        }
+    });
+
+    // Validation
+    function validateForms(form) {
+        $(form).validate({
+            rules: {
+                name: "required",
+                phone: "required",
+                email: {
+                    required: true,
+                    email: true
+                }
+            },
+            messages: {
+                delivery: false,
+                address: 'Пожалуйста, ведите адрес',
+                name: "Пожалуйста, введите имя",
+                phone: "Пожалуйста, введите номер телефона",
+                email: {
+                    required: "Пожалуйста, введите e-mail",
+                    email: "Введите корректный e-mail"
+                }
+            }
+        });
+    };
+  
+    validateForms('.form');
+
+    // Masked input
+    $('input[name=phone]').mask("+7 (999) 999-99-99");
 });

@@ -114,7 +114,7 @@
                         </div>
                         <div class="catalog__item">
                             <div class="catalog__img"></div>
-                            <div id='0003' class="catalog__name">Другой бургер</div>
+                            <div id='0003' class="catalog__name">Еще один бургер</div>
                             <div class="catalog__info">
                                 <div class="catalog__weight">300 г.</div>
                                 <div class="catalog__price"><span>350</span> руб.</div>
@@ -137,7 +137,7 @@
                         </div>
                         <div class="catalog__item">
                             <div class="catalog__img"></div>
-                            <div id='0004' class="catalog__name">Другой бургер</div>
+                            <div id='0004' class="catalog__name">Еще один бургер с очень длинным названием</div>
                             <div class="catalog__info">
                                 <div class="catalog__weight">300 г.</div>
                                 <div class="catalog__price"><span>350</span> руб.</div>
@@ -187,16 +187,47 @@
 
     <section class="footer">
         <div class="container">
-            <div class="footer__content"><a href="#">Сайт разработан <span>vvgal</span></a></div>
+            <div class="footer__content">
+                <div class="footer__address">
+                    улица Бекетова, 15 <br>
+                    Нижний Новгород
+                </div>
+                <div class="footer__developer">
+                    <a href="#">Сайт разработан <span>vvgal</span></a>
+                </div>
+            </div>
         </div>
     </section>
 
     <div class="shopping-cart">
         <div class="container">
             <div class="shopping-cart__content">
+                <div class="shopping-cart__exit">
+                    <span></span>
+                    <span></span>
+                </div>
                 <table class="shopping-cart__table">
-                    <tr><th>№</th><th>Наименование</th><th>Цена</th><th>Количество</th><th>Стоимость</th></tr>
+                    <tr><th>№</th><th>Наименование</th><th>Цена</th><th>Кол-во</th><th>Стоимость</th></tr>
                 </table>
+                <div class="shopping-cart__total">
+                    Сумма заказа: <span>0</span> руб.
+                </div>
+                <form class="form shopping-cart__form" action="#">
+                    <fieldset class="shopping-cart__delivery">
+                        <input class="shopping-cart__radio" id="delivery" name="delivery" required checked type="radio">
+                        <label class="shopping-cart__label" for="delivery">Доставка</label>
+                        <input class="shopping-cart__radio" id="togo" name="delivery" required type="radio">
+                        <label class="shopping-cart__label" for="togo">Самовывоз</label>
+                    </fieldset>
+                    <fieldset class="shopping-cart__contact-info">
+                        <legend>Контактная информация</legend>
+                        <input class="shopping-cart__input shopping-cart__address shopping-cart__address_active" required name="address" placeholder="Адрес*" type="text">
+                        <input class="shopping-cart__input" name="name" required placeholder="Ваше имя*" type="text">
+                        <input class="shopping-cart__input" name="phone" required placeholder="Ваш телефон*">
+                        <input class="shopping-cart__input" name="email" placeholder="Ваш E-mail" type="email">
+                    </fieldset>
+                    <button class="shopping-cart__button button_submit">Сделать заказ</button>
+                </form>
             </div>
         </div>
     </div>
@@ -210,11 +241,13 @@
             <li class="mobile-menu__contact"><a href="tel:+78000501515" class="mobile-menu__phone">8 800 050-15-15</a></li>
             <li class="mobile-menu__contact"><div class="mobile-menu__email">dyadya_el@mail.ru</div></li>
         </ul>
-        <div class="mobile-menu__address">улица Бекетова, 15, <br>Нижний Новгород</div>
+        <div class="mobile-menu__address">улица Бекетова, 15 <br>Нижний Новгород</div>
         <div class="mobile-menu__developer"><a href="#">Сайт разработан <span>vvgal</span></a></div>
     </div>
 
     <script src="js/jquery-3.6.2.min.js"></script>
+    <script src="js/jquery.validate.min.js"></script>
+    <script src="js/jquery.maskedinput.min.js"></script>
     <script src="js/script.js"></script>
 </body>
 </html>
