@@ -206,17 +206,21 @@
                     <span></span>
                     <span></span>
                 </div>
-                <table class="shopping-cart__table">
-                    <tr><th>№</th><th>Наименование</th><th>Цена</th><th>Кол-во</th><th>Стоимость</th></tr>
-                </table>
-                <div class="shopping-cart__total">
-                    Сумма заказа: <span>0</span> руб.
-                </div>
                 <form class="form shopping-cart__form" action="#">
+                    <fieldset class="shopping-cart__order">
+                        <table class="shopping-cart__table">
+                            <tr><th>Наименование</th><th>Цена</th><th>Кол-во</th><th>Стоимость</th></tr>
+                        </table>
+                        <input type="hidden" name="goods" value="0">
+                    </fieldset>
+                    <div class="shopping-cart__total">
+                        Сумма заказа: <span>0</span> руб.
+                        <input type="hidden" name="total" value="0">
+                    </div>
                     <fieldset class="shopping-cart__delivery">
-                        <input class="shopping-cart__radio" id="delivery" name="delivery" required checked type="radio">
+                        <input class="shopping-cart__radio" id="delivery" value="Доставка" name="delivery" required checked type="radio">
                         <label class="shopping-cart__label" for="delivery">Доставка</label>
-                        <input class="shopping-cart__radio" id="togo" name="delivery" required type="radio">
+                        <input class="shopping-cart__radio" id="togo" value="Самовывоз" name="delivery" required type="radio">
                         <label class="shopping-cart__label" for="togo">Самовывоз</label>
                     </fieldset>
                     <fieldset class="shopping-cart__contact-info">

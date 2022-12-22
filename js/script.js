@@ -49,30 +49,34 @@ $(document).ready(function(){
     });
     // Add/remove to cart
     let global_qty = 0,
-        order = 0,
         total = 0;
     $('.catalog__button').on('click', function() {
         let qty = 0,
             position = $(this).closest('.catalog__item').find('.catalog__name').html(),
             id = $(this).closest('.catalog__item').find('.catalog__name').attr('id'),
-            price = $(this).closest('.catalog__item').find('.catalog__price>span').html();
+            price = $(this).closest('.catalog__item').find('.catalog__price>span').html(),
+            goods = '';
         $(this).removeClass('catalog__button_active')
         .closest('.catalog__item').find('.catalog__setting').addClass('catalog__setting_active')
         .find('.catalog__qty').html(qty += 1);
         global_qty += 1;
-        order += 1;
         total += Number(price)
         $('.header__qty').html(global_qty);
 
-        $('.shopping-cart__table').append($('<tr class="'+id+'"><td class="order">'+String(order)+'</td><td class="name">'+position+'</td><td class="price">'+price+' руб.</td><td class="qty">'+qty+'</td><td class="subtotal">'+(price * qty)+' руб.</td></tr>'));
+        $('.shopping-cart__table').append($('<tr class="'+id+'"><td class="name">'+position+'</td><td class="price">'+price+' руб.</td><td class="qty">'+qty+'</td><td class="subtotal">'+(price * qty)+' руб.</td></tr>'));
         $('.shopping-cart__total>span').html(total);
+        $('.shopping-cart__total>input').attr('value', total);
+
+        goods = $('.shopping-cart__table').html();
+        $('.shopping-cart__order>input').attr('value', goods);
     });
 
     // Minus
     $('.catalog__minus').on('click', function() {
         let qty = Number($(this).closest('.catalog__setting').find('.catalog__qty').html()),
             id = $(this).closest('.catalog__item').find('.catalog__name').attr('id'),
-            price = $(this).closest('.catalog__item').find('.catalog__price>span').html();
+            price = $(this).closest('.catalog__item').find('.catalog__price>span').html(),
+            goods = '';
         global_qty -= 1;
         $('.header__qty').html(global_qty);
         if (qty == 1) {
@@ -86,9 +90,13 @@ $(document).ready(function(){
 
         total -= Number(price);
         $('.shopping-cart__total>span').html(total);
+        $('.shopping-cart__total>input').attr('value', total);
     
         $('.shopping-cart__table').find('.'+id).find('.qty').html(qty);
         $('.shopping-cart__table').find('.'+id).find('.subtotal').html((qty*price)+' руб.');
+
+        goods = $('.shopping-cart__table').html();
+        $('.shopping-cart__order>input').attr('value', goods);
     });
 
     // Plus
@@ -96,7 +104,8 @@ $(document).ready(function(){
         global_qty += 1;
         $('.header__qty').html(global_qty);
         let qty = Number($(this).closest('.catalog__setting').find('.catalog__qty').html()),
-            price = $(this).closest('.catalog__item').find('.catalog__price>span').html();
+            price = $(this).closest('.catalog__item').find('.catalog__price>span').html(),
+            goods = '';
         $(this).closest('.catalog__setting').find('.catalog__qty').html(qty += 1);
         $('.header__qty').html(global_qty);
 
@@ -104,9 +113,13 @@ $(document).ready(function(){
 
         total += Number(price);
         $('.shopping-cart__total>span').html(total);
+        $('.shopping-cart__total>input').attr('value', total);
     
         $('.shopping-cart__table').find('.'+id).find('.qty').html(qty);
         $('.shopping-cart__table').find('.'+id).find('.subtotal').html((qty*price)+' руб.');
+
+        goods = $('.shopping-cart__table').html();
+        $('.shopping-cart__order>input').attr('value', goods);
     });
 
     // Form
@@ -149,4 +162,20 @@ $(document).ready(function(){
 
     // Masked input
     $('input[name=phone]').mask("+7 (999) 999-99-99");
+
+    // Mailer
+    $('form').submit(function(e) {
+        e.preventDefault();
+        $.ajax({
+            type: "POST",
+            url: "mailer/smart.php",
+            data: $(this).serialize()
+        }).done(function() {
+            $(this).find("input").val("");
+            $('.shopping-cart').removeClass('shopping-cart_active');
+            // $('.overlay, #thanks').fadeIn();
+            $('form').trigger('reset');
+        });
+        return false;
+        });
 });
